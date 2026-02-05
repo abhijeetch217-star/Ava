@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Birthday Test</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins, Arial;
+  background:linear-gradient(#ffe6f0,#fff);
+}
+section{
+  min-height:100vh;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+.active{display:flex;}
+
+h1,h2{color:#ff5fa2}
+p{max-width:420px;color:#555}
+
+.btn{
+  padding:12px 24px;
+  border-radius:25px;
+  border:none;
+  background:#ff8fb8;
+  color:#fff;
+  margin-top:15px;
+  cursor:pointer;
+}
+
+.slide{
+  width:260px;
+  background:#ffd1e8;
+  padding:14px;
+  margin:10px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.gift{
+  font-size:70px;
+  cursor:pointer;
+  margin:10px;
+}
+
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.popup div{
+  background:#fff;
+  padding:20px;
+  border-radius:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section class="active" id="p1">
+  <h1>My Dear Eva</h1>
+  <p>Welcome to a tiny cartoon world 💕</p>
+  <button class="btn" onclick="go('p2')">Start the Surprise</button>
+</section>
+
+<!-- PAGE 2 -->
+<section id="p2">
+  <h2>23 Years Ago ✨</h2>
+  <p>A beautiful soul arrived and made the world brighter.</p>
+  <button class="btn" onclick="go('p3')">Continue</button>
+</section>
+
+<!-- PAGE 3 (SLIDES) -->
+<section id="p3">
+  <h2>Little Truths 💗</h2>
+  <div class="slide" onclick="alert('You are the most beautiful person')">
+    Slide 1 ➜
+  </div>
+  <div class="slide" onclick="alert('You make every day special')">
+    Slide 2 ➜
+  </div>
+  <div class="slide" onclick="alert('You are deeply lovable')">
+    Slide 3 ➜
+  </div>
+  <button class="btn" onclick="go('p4')">Continue</button>
+</section>
+
+<!-- PAGE 4 (GIFTS) -->
+<section id="p4">
+  <h2>Hidden Gifts 🎁</h2>
+  <div>
+    <span class="gift" onclick="pop('Message inside gift 1')">🎁</span>
+    <span class="gift" onclick="pop('Message inside gift 2')">🎁</span>
+    <span class="gift" onclick="pop('Message inside gift 3')">🎁</span>
+  </div>
+  <button class="btn" onclick="go('p5')">Continue the Surprise</button>
+</section>
+
+<!-- PAGE 5 (QUIZ) -->
+<section id="p5">
+  <h2>Quick Quiz 🌸</h2>
+  <p>Who is the most loving person?</p>
+  <button class="btn">You</button>
+  <button class="btn">My most beautiful ever</button>
+  <br>
+  <button class="btn" onclick="go('p6')">Next</button>
+</section>
+
+<!-- PAGE 6 (SLIDES) -->
+<section id="p6">
+  <h2>More Love 💞</h2>
+  <div class="slide" onclick="alert('Slide message A')">Slide A</div>
+  <div class="slide" onclick="alert('Slide message B')">Slide B</div>
+  <div class="slide" onclick="alert('Slide message C')">Slide C</div>
+  <div class="slide" onclick="alert('Slide message D')">Slide D</div>
+  <button class="btn" onclick="go('p7')">Continue</button>
+</section>
+
+<!-- PAGE 7 (BIG GIFT) -->
+<section id="p7">
+  <h2>Final Gift 🎉</h2>
+  <div class="gift" onclick="go('p8')">🎁</div>
+  <p>Tap to open</p>
+</section>
+
+<!-- PAGE 8 (FINAL) -->
+<section id="p8">
+  <h2>The End 💖</h2>
+  <p>This is where your final letter or series will appear.</p>
+</section>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div>
+    <p id="popText"></p>
+    <button class="btn" onclick="closePop()">Close</button>
+  </div>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function pop(txt){
+  document.getElementById("popText").innerText=txt;
+  document.getElementById("popup").style.display="flex";
+}
+function closePop(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
