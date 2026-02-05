@@ -2,54 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sample Birthday Test</title>
+<title>Hey Cutiepie 💖</title>
 
 <style>
+/* ===== GLOBAL ===== */
 body{
   margin:0;
-  font-family:Poppins, Arial;
-  background:linear-gradient(#ffe6f0,#fff);
-}
-section{
-  min-height:100vh;
-  display:none;
+  height:100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#fff6ee,#ffe6f0,#fff0d9);
+  display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
-  text-align:center;
+  overflow:hidden;
+}
+
+/* floating hearts */
+.heart{
+  position:absolute;
+  color:#ff9bb3;
+  font-size:20px;
+  animation: float 6s infinite linear;
+  opacity:.6;
+}
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+
+/* ===== MAIN CARD ===== */
+.card{
+  width:340px;
   padding:20px;
+  border-radius:28px;
+  background:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+  animation: pop 1s ease;
 }
-.active{display:flex;}
+@keyframes pop{
+  from{transform:scale(.9);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
 
-h1,h2{color:#ff5fa2}
-p{max-width:420px;color:#555}
+.inner{
+  border-radius:22px;
+  padding:20px;
+  background: linear-gradient(180deg,#ffd6e8,#ffeef5);
+  text-align:center;
+}
 
+/* character gif */
+.inner img{
+  width:110px;
+  margin-bottom:10px;
+}
+
+/* text */
+h2{
+  margin:10px 0 5px;
+  color:#5a2a42;
+}
+p{
+  color:#6f4a5a;
+  font-size:14px;
+}
+
+/* ===== BUTTON ===== */
 .btn{
-  padding:12px 24px;
-  border-radius:25px;
-  border:none;
-  background:#ff8fb8;
-  color:#fff;
   margin-top:15px;
+  padding:12px;
+  border-radius:25px;
+  background:linear-gradient(135deg,#ff9bb3,#cda7ff);
+  color:#fff;
   cursor:pointer;
+  box-shadow:0 6px 15px rgba(0,0,0,.2);
+  transition:.3s;
 }
+.btn:hover{transform:scale(1.05);}
 
-.slide{
-  width:260px;
-  background:#ffd1e8;
-  padding:14px;
-  margin:10px;
+/* ===== SLIDE BUTTONS ===== */
+.slider{
+  margin:12px 0;
+  padding:12px;
+  background:#fff;
   border-radius:20px;
   cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+.slider span{
+  display:none;
+  color:#5a2a42;
+}
+.slider.active span{
+  display:block;
 }
 
-.gift{
-  font-size:70px;
-  cursor:pointer;
-  margin:10px;
-}
-
+/* ===== POPUP LETTER ===== */
 .popup{
   position:fixed;
   inset:0;
@@ -58,108 +106,108 @@ p{max-width:420px;color:#555}
   justify-content:center;
   align-items:center;
 }
-.popup div{
-  background:#fff;
+.letter{
+  width:300px;
   padding:20px;
-  border-radius:15px;
+  border-radius:22px;
+  background:linear-gradient(180deg,#fff,#ffe6f0);
+  text-align:center;
+  animation: pop .5s ease;
+}
+.close{
+  margin-top:10px;
+  color:#ff6b8a;
+  cursor:pointer;
+}
+
+/* ===== GIFT ===== */
+.gift{
+  font-size:60px;
+  cursor:pointer;
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
 }
 </style>
 </head>
 
 <body>
 
+<!-- floating hearts -->
+<div class="heart" style="left:10%">❤</div>
+<div class="heart" style="left:40%">❤</div>
+<div class="heart" style="left:70%">❤</div>
+
 <!-- PAGE 1 -->
-<section class="active" id="p1">
-  <h1>My Dear Eva</h1>
-  <p>Welcome to a tiny cartoon world 💕</p>
-  <button class="btn" onclick="go('p2')">Start the Surprise</button>
-</section>
+<div class="card" id="page1">
+  <div class="inner">
+    <!-- SAMPLE GIF (replace later) -->
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+    <h2>Hey Cutiepie</h2>
+    <p>Can we talk for a moment?<br>There’s something important I want to tell you.</p>
+    <div class="btn" onclick="nextPage()">Continue ❤️</div>
+  </div>
+</div>
 
 <!-- PAGE 2 -->
-<section id="p2">
-  <h2>23 Years Ago ✨</h2>
-  <p>A beautiful soul arrived and made the world brighter.</p>
-  <button class="btn" onclick="go('p3')">Continue</button>
-</section>
+<div class="card" id="page2" style="display:none">
+  <div class="inner">
+    <h2>Slide for love 💕</h2>
 
-<!-- PAGE 3 (SLIDES) -->
-<section id="p3">
-  <h2>Little Truths 💗</h2>
-  <div class="slide" onclick="alert('You are the most beautiful person')">
-    Slide 1 ➜
+    <div class="slider" onclick="this.classList.toggle('active')">
+      👉 <span>You are the most beautiful person in my world 🌸</span>
+    </div>
+
+    <div class="slider" onclick="this.classList.toggle('active')">
+      👉 <span>You make every day special ✨</span>
+    </div>
+
+    <div class="slider" onclick="this.classList.toggle('active')">
+      👉 <span>You are my favorite human 🤍</span>
+    </div>
+
+    <div class="btn" onclick="showGift()">Continue 💝</div>
   </div>
-  <div class="slide" onclick="alert('You make every day special')">
-    Slide 2 ➜
+</div>
+
+<!-- GIFT PAGE -->
+<div class="card" id="page3" style="display:none">
+  <div class="inner">
+    <h2>A Small Surprise 🎁</h2>
+    <div class="gift" onclick="openLetter()">🎁</div>
+    <p>Tap to open</p>
   </div>
-  <div class="slide" onclick="alert('You are deeply lovable')">
-    Slide 3 ➜
-  </div>
-  <button class="btn" onclick="go('p4')">Continue</button>
-</section>
+</div>
 
-<!-- PAGE 4 (GIFTS) -->
-<section id="p4">
-  <h2>Hidden Gifts 🎁</h2>
-  <div>
-    <span class="gift" onclick="pop('Message inside gift 1')">🎁</span>
-    <span class="gift" onclick="pop('Message inside gift 2')">🎁</span>
-    <span class="gift" onclick="pop('Message inside gift 3')">🎁</span>
-  </div>
-  <button class="btn" onclick="go('p5')">Continue the Surprise</button>
-</section>
-
-<!-- PAGE 5 (QUIZ) -->
-<section id="p5">
-  <h2>Quick Quiz 🌸</h2>
-  <p>Who is the most loving person?</p>
-  <button class="btn">You</button>
-  <button class="btn">My most beautiful ever</button>
-  <br>
-  <button class="btn" onclick="go('p6')">Next</button>
-</section>
-
-<!-- PAGE 6 (SLIDES) -->
-<section id="p6">
-  <h2>More Love 💞</h2>
-  <div class="slide" onclick="alert('Slide message A')">Slide A</div>
-  <div class="slide" onclick="alert('Slide message B')">Slide B</div>
-  <div class="slide" onclick="alert('Slide message C')">Slide C</div>
-  <div class="slide" onclick="alert('Slide message D')">Slide D</div>
-  <button class="btn" onclick="go('p7')">Continue</button>
-</section>
-
-<!-- PAGE 7 (BIG GIFT) -->
-<section id="p7">
-  <h2>Final Gift 🎉</h2>
-  <div class="gift" onclick="go('p8')">🎁</div>
-  <p>Tap to open</p>
-</section>
-
-<!-- PAGE 8 (FINAL) -->
-<section id="p8">
-  <h2>The End 💖</h2>
-  <p>This is where your final letter or series will appear.</p>
-</section>
-
-<!-- POPUP -->
+<!-- POPUP LETTER -->
 <div class="popup" id="popup">
-  <div>
-    <p id="popText"></p>
-    <button class="btn" onclick="closePop()">Close</button>
+  <div class="letter">
+    <h3>For You 💌</h3>
+    <p>
+      This is just a sample love letter.<br>
+      Later you’ll replace it with<br>
+      your real heartfelt message 💖
+    </p>
+    <div class="close" onclick="closePopup()">Close ❤️</div>
   </div>
 </div>
 
 <script>
-function go(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+function nextPage(){
+  page1.style.display="none";
+  page2.style.display="block";
 }
-function pop(txt){
-  document.getElementById("popText").innerText=txt;
-  document.getElementById("popup").style.display="flex";
+function showGift(){
+  page2.style.display="none";
+  page3.style.display="block";
 }
-function closePop(){
-  document.getElementById("popup").style.display="none";
+function openLetter(){
+  popup.style.display="flex";
+}
+function closePopup(){
+  popup.style.display="none";
 }
 </script>
 
