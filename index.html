@@ -2,42 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hey Cutiepie 💖</title>
+<title>For My Favorite Person 💖</title>
 
 <style>
 /* ===== GLOBAL ===== */
 body{
   margin:0;
+  font-family:'Poppins',sans-serif;
   height:100vh;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg,#fff6ee,#ffe6f0,#fff0d9);
-  display:flex;
+  overflow:hidden;
+  background:linear-gradient(135deg,#fff1f7,#ffeef2,#fff7e6);
+}
+.page{
+  position:absolute;
+  inset:0;
+  display:none;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
 }
+.page.active{display:flex;}
 
-/* floating hearts */
-.heart{
+/* floating decorations */
+.float{
   position:absolute;
-  color:#ff9bb3;
-  font-size:20px;
-  animation: float 6s infinite linear;
-  opacity:.6;
+  animation:float 7s infinite linear;
+  opacity:.4;
 }
 @keyframes float{
-  0%{transform:translateY(100vh);}
-  100%{transform:translateY(-10vh);}
+  from{transform:translateY(110vh);}
+  to{transform:translateY(-20vh);}
 }
 
-/* ===== MAIN CARD ===== */
+/* ===== CARD ===== */
 .card{
-  width:340px;
+  width:350px;
   padding:20px;
-  border-radius:28px;
+  border-radius:30px;
   background:#fff;
-  box-shadow:0 20px 40px rgba(0,0,0,.15);
-  animation: pop 1s ease;
+  box-shadow:0 25px 45px rgba(0,0,0,.18);
+  animation:pop .8s ease;
 }
 @keyframes pop{
   from{transform:scale(.9);opacity:0;}
@@ -45,57 +48,45 @@ body{
 }
 
 .inner{
-  border-radius:22px;
+  background:linear-gradient(180deg,#ffd6e8,#fff0f6);
+  border-radius:25px;
   padding:20px;
-  background: linear-gradient(180deg,#ffd6e8,#ffeef5);
   text-align:center;
 }
 
-/* character gif */
 .inner img{
-  width:110px;
+  width:120px;
   margin-bottom:10px;
 }
 
-/* text */
-h2{
-  margin:10px 0 5px;
-  color:#5a2a42;
-}
-p{
-  color:#6f4a5a;
-  font-size:14px;
-}
+h2{color:#5b2a3c;margin:8px 0;}
+p{color:#6f4b59;font-size:14px;}
 
 /* ===== BUTTON ===== */
 .btn{
   margin-top:15px;
-  padding:12px;
-  border-radius:25px;
-  background:linear-gradient(135deg,#ff9bb3,#cda7ff);
-  color:#fff;
+  padding:12px 18px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff9bb3,#caa7ff);
+  color:white;
   cursor:pointer;
-  box-shadow:0 6px 15px rgba(0,0,0,.2);
+  display:inline-block;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
   transition:.3s;
 }
-.btn:hover{transform:scale(1.05);}
+.btn:hover{transform:scale(1.08);}
 
-/* ===== SLIDE BUTTONS ===== */
-.slider{
-  margin:12px 0;
-  padding:12px;
-  background:#fff;
+/* ===== SLIDE MESSAGE ===== */
+.slide{
+  background:white;
   border-radius:20px;
+  padding:12px;
+  margin:10px 0;
   cursor:pointer;
   box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
-.slider span{
-  display:none;
-  color:#5a2a42;
-}
-.slider.active span{
-  display:block;
-}
+.slide span{display:none;}
+.slide.open span{display:block;color:#5a2a42;}
 
 /* ===== POPUP LETTER ===== */
 .popup{
@@ -109,105 +100,147 @@ p{
 .letter{
   width:300px;
   padding:20px;
-  border-radius:22px;
+  border-radius:25px;
   background:linear-gradient(180deg,#fff,#ffe6f0);
+  animation:pop .5s ease;
   text-align:center;
-  animation: pop .5s ease;
-}
-.close{
-  margin-top:10px;
-  color:#ff6b8a;
-  cursor:pointer;
 }
 
 /* ===== GIFT ===== */
 .gift{
-  font-size:60px;
+  font-size:65px;
   cursor:pointer;
-  animation: bounce 1.5s infinite;
+  animation:bounce 1.4s infinite;
 }
 @keyframes bounce{
   0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-8px);}
+  50%{transform:translateY(-10px);}
 }
+
+/* ===== QUIZ ===== */
+.option{
+  margin:10px 0;
+  padding:12px;
+  border-radius:20px;
+  background:#fff;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+.option:hover{background:#ffe6f0;}
 </style>
 </head>
 
 <body>
 
-<!-- floating hearts -->
-<div class="heart" style="left:10%">❤</div>
-<div class="heart" style="left:40%">❤</div>
-<div class="heart" style="left:70%">❤</div>
+<!-- FLOATING ELEMENTS -->
+<div class="float" style="left:10%">💖</div>
+<div class="float" style="left:50%">🌸</div>
+<div class="float" style="left:80%">✨</div>
 
 <!-- PAGE 1 -->
-<div class="card" id="page1">
-  <div class="inner">
-    <!-- SAMPLE GIF (replace later) -->
-    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
-    <h2>Hey Cutiepie</h2>
-    <p>Can we talk for a moment?<br>There’s something important I want to tell you.</p>
-    <div class="btn" onclick="nextPage()">Continue ❤️</div>
-  </div>
-</div>
+<div class="page active" id="p1">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<h2>Hey Cutiepie 💕</h2>
+<p>Can we talk for a moment?<br>I made something special… just for you.</p>
+<div class="btn" onclick="go(2)">Continue ❤️</div>
+</div></div></div>
 
 <!-- PAGE 2 -->
-<div class="card" id="page2" style="display:none">
-  <div class="inner">
-    <h2>Slide for love 💕</h2>
+<div class="page" id="p2">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+<h2>A Beautiful Day 🌷</h2>
+<p>A truly special soul was born today…</p>
+<div class="btn" onclick="go(3)">Start the Surprise 🎂</div>
+</div></div></div>
 
-    <div class="slider" onclick="this.classList.toggle('active')">
-      👉 <span>You are the most beautiful person in my world 🌸</span>
-    </div>
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+<h2>Slide the Love 💗</h2>
 
-    <div class="slider" onclick="this.classList.toggle('active')">
-      👉 <span>You make every day special ✨</span>
-    </div>
-
-    <div class="slider" onclick="this.classList.toggle('active')">
-      👉 <span>You are my favorite human 🤍</span>
-    </div>
-
-    <div class="btn" onclick="showGift()">Continue 💝</div>
-  </div>
+<div class="slide" onclick="this.classList.toggle('open')">
+👉 <span>You are incredibly beautiful, inside and out 🌸</span>
+</div>
+<div class="slide" onclick="this.classList.toggle('open')">
+👉 <span>You make my world brighter every single day ✨</span>
+</div>
+<div class="slide" onclick="this.classList.toggle('open')">
+👉 <span>You are the most lovable person I know 💖</span>
 </div>
 
-<!-- GIFT PAGE -->
-<div class="card" id="page3" style="display:none">
-  <div class="inner">
-    <h2>A Small Surprise 🎁</h2>
-    <div class="gift" onclick="openLetter()">🎁</div>
-    <p>Tap to open</p>
-  </div>
-</div>
+<div class="btn" onclick="go(4)">Continue 💝</div>
+</div></div></div>
 
-<!-- POPUP LETTER -->
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
+<h2>Little Gifts 🎁</h2>
+
+<div class="gift" onclick="openLetter()">🎁</div>
+<p>Tap the gift to read something sweet</p>
+
+<div class="btn" onclick="go(5)">Continue the Surprise 💕</div>
+</div></div></div>
+
+<!-- PAGE 5 QUIZ -->
+<div class="page" id="p5">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif">
+<h2>Quick Game 🌼</h2>
+<p>Who is the most beautiful person in the world?</p>
+
+<div class="option">You</div>
+<div class="option">The one reading this 💖</div>
+
+<div class="btn" onclick="go(6)">Next 🌷</div>
+</div></div></div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/26tPplGWjN0xLybiU/giphy.gif">
+<h2>More Love 💫</h2>
+<p>Every smile of yours feels magical.</p>
+<div class="btn" onclick="go(7)">Continue 💞</div>
+</div></div></div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif">
+<h2>One Last Gift 🎀</h2>
+<div class="gift" onclick="go(8)">🎁</div>
+<p>Tap to open the final surprise</p>
+</div></div></div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+<div class="card"><div class="inner">
+<img src="https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif">
+<h2>Always You 💖</h2>
+<p>This was just a sample.<br>The real magic will be what YOU write.</p>
+</div></div></div>
+
+<!-- POPUP -->
 <div class="popup" id="popup">
-  <div class="letter">
-    <h3>For You 💌</h3>
-    <p>
-      This is just a sample love letter.<br>
-      Later you’ll replace it with<br>
-      your real heartfelt message 💖
-    </p>
-    <div class="close" onclick="closePopup()">Close ❤️</div>
-  </div>
+<div class="letter">
+<h3>For You 💌</h3>
+<p>This is a letter-style popup.<br>You will replace this text later.</p>
+<div class="btn" onclick="popup.style.display='none'">Close ❤️</div>
+</div>
 </div>
 
 <script>
-function nextPage(){
-  page1.style.display="none";
-  page2.style.display="block";
-}
-function showGift(){
-  page2.style.display="none";
-  page3.style.display="block";
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
 }
 function openLetter(){
-  popup.style.display="flex";
-}
-function closePopup(){
-  popup.style.display="none";
+  popup.style.display='flex';
 }
 </script>
 
